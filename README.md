@@ -46,7 +46,7 @@ pip install virtualenv -t "/ruta/del/intérprete"
 5. Clonar el repositorio:
 
 ```sh
-git clone https://github.com/GuilleAQN/OnRoad.git
+https://github.com/josealberto-1/Proyecto-Web-Tikets.git
 ```
 
 6. Instala las dependencias principales:
@@ -108,7 +108,7 @@ python manage.py createsuperuser
 11. Ejecuta el servidor de desarrollo:
 
 ```sh
-python manage.py runserver 3000
+python manage.py runserver 5000
 ```
 
 La aplicación estará disponible en `http://localhost:3000/`.
