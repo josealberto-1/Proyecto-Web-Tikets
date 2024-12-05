@@ -1,0 +1,24 @@
+{% extends 'bases/baseadmin.html' %}
+
+{% block title %}
+  Nuevo Usuario
+{% endblock %}
+
+{% block content %}
+  {{ block.super }}
+  <div class="container-sm p-4 col-md-6 my-5 bg-info-subtle rounded">
+    <form class="row g-3" action="/elegir_usuario/registro_usuario/?rol={{ rol }}" method="POST">
+      {% csrf_token %}
+      {% if rol == '1' %}
+        {% include 'admin/partials/registro_admin.html' %}
+      {% elif rol == '2' %}
+        {% include 'admin/partials/registro_cliente.html' %}
+      {% elif rol == '3' %}
+        {% include 'admin/partials/registro_conductor.html' %}
+      {% endif %}
+      <div class="col-12 my-4">
+        <button type="submit" class="btn btn-primary">Registrar</button>
+      </div>
+    </form>
+  </div>
+{% endblock %}

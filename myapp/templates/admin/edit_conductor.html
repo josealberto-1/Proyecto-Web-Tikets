@@ -1,0 +1,65 @@
+{% extends 'bases/baseadmin.html' %}
+
+{% block title %}
+    Editar Conductor
+{% endblock %}
+
+{% block content %}
+  {{ block.super }}
+  <div class="container-sm col-md-8 my-5 bg-info-subtle rounded">
+    <h1 class="text-black">Editar Condutor (ID: {{ form.instance.conductorid }})</h1>
+    <form class="row g-3" method="POST">
+      {% csrf_token %}
+      <input type="hidden" name="id" value="{{ form.instance.id }}" />
+      <div class="row">
+        <div class="col-md-6 mt-2">
+          <label for="nombre" class="form-label">Nombre</label>
+          {{ form.nombre }}
+        </div>
+        <div class="col-md-6 mt-2">
+          <label for="apellido" class="form-label">Apellido</label>
+          {{ form.apellido }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mt-2">
+          <label for="telefono" class="form-label">Teléfono</label>
+          {{ form.telefono }}
+        </div>
+        <div class="col-md-6 mt-2">
+          <label for="licencia" class="form-label">Licencia de conducir</label>
+          {{ form.licenciaconducir }}
+        </div>
+        <div class="col-md-12 mt-2">
+          <label for="direccion" class="form-label">Dirección</label>
+          {{ form.direccion }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mt-2">
+          <label for="fechaContratacion" class="form-label">Fecha de contratación</label>
+          {{ form.fechacontratacion }}
+        </div>
+      </div>
+
+      <div class="col-12 my-4">
+        <button type="submit" class="btn btn-primary me-2">Guardar Cambios</button>
+        <a href="{% url 'ver_conductores' %}" class="btn btn-secondary">Cancelar</a>
+      </div>
+    </form>
+  </div>
+
+  {% if messages %}
+    {% for message in messages %}
+      {% if message.tags == 'error' %}
+        <script>
+          Swal.fire('Error', '{{ message }}', 'error')
+        </script>
+      {% elif message.tags == 'success' %}
+        <script>
+          Swal.fire('Éxito', '{{ message }}', 'success')
+        </script>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endblock %}

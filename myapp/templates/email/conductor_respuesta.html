@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<style>
+  body {
+    font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+  }
+  .container {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+  }
+  .logo {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .logo img {
+    max-width: 200px;
+    border-radius: 50%;
+    height: auto;
+  }
+  h2 {
+    color: #333;
+  }
+  p {
+    margin-bottom: 15px;
+  }
+  a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #427ef5;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  .button:hover {
+    background-color: #0f17b8;
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <div class="logo">
+      <img src="https://onroad.sirv.com/Images/Logo.png" width="1080" height="1080" alt="Logo de la Compañia">
+    </div>
+    <h2>Respuesta a creación de usuario</h2>
+    <p>Estimado/a {{nombre_completo}},</p>
+    <p>Le informamos que su cuenta de usuario ha sido creada exitosamente.</p>
+    <p>A continuación, encontrará los detalles de su cuenta:</p>
+    <ul>
+      <li><strong>Nombre de usuario:</strong> {{usuario}}</li>
+      <li><strong>Contraseña:</strong> {{contraseña}}</li>
+    </ul>
+    <p>Puede acceder a su cuenta utilizando el siguiente enlace:</p>
+    <p><a href="https://onroad.onrender.com/" class="button">Iniciar sesión</a></p>
+    <p>Si tiene alguna pregunta o necesita asistencia adicional, no dude en contactarnos.</p>
+    <p>Atentamente,</p>
+    <p>El equipo de OnRoad</p>
+  </div>
+</body>
+</html>

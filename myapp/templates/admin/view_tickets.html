@@ -1,0 +1,38 @@
+{% extends 'bases/baseadmin.html' %}
+
+{% block title %}
+  Tickets
+{% endblock %}
+
+{% block content %}
+  {{ block.super }}
+  <div class="container my-5 rounded">
+    <div id="accordion">
+      {% for ticket in tickets %}
+        <div class="card my-4 text-black">
+          <div class="card-header bg-white text-black d-flex justify-content-between align-items-center">
+            <a class="btn text-black" data-bs-toggle="collapse" href="#collapse{{ forloop.counter }}">Ticket {{ ticket.ticketid }}</a>
+            <div class="align-items-right"></div>
+          </div>
+          <div id="collapse{{ forloop.counter }}" class="collapse bg-info-subtle text-white" data-bs-parent="#accordion">
+            <div class="card-body text-black">
+              <strong>Cliente</strong>: {{ ticket.clienteid }}
+            </div>
+            <div class="card-body text-black">
+              <strong>Identificador del viaje</strong>: {{ ticket.viajeid.viajeid }}
+            </div>
+            <div class="card-body text-black">
+              <strong>Fecha reservación</strong>: {{ ticket.fechareservacion }}
+            </div>
+            <div class="card-body text-black">
+              <strong>Estado</strong>: {{ ticket.estadoticket }}
+            </div>
+            <div class="card-body text-black">
+              <strong>Precio</strong>: RD${{ ticket.preciototal }}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

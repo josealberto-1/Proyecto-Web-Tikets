@@ -1,0 +1,39 @@
+{% extends 'bases/baseadmin.html' %}
+
+{% block title %}
+  Usuario a crear
+{% endblock %}
+
+{% block content %}
+  {{ block.super }}
+  <div class="container-sm col-md-5 my-5 bg-info-subtle rounded">
+    <h1 class="text-black">Tipo de Usuario a registrar</h1>
+    <form class="row g-3" action="registro_usuario/" method="GET">
+      {% csrf_token %}
+      <div class="col-md-10">
+        <label for="inputRoles" class="form-label">Roles</label>
+        <select id="inputRoles" name="inputRoles" class="form-select">
+          {% for rol in roles %}
+            <option value="{{ rol.rolid }}">{{ rol.nombrerol }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <div class="col-12 my-4">
+        <button type="submit" class="btn btn-primary">Registrar</button>
+      </div>
+    </form>
+  </div>
+  {% if messages %}
+    {% for message in messages %}
+      {% if message.tags == 'error' %}
+        <script>
+          Swal.fire('Error', '{{ message }}', 'error')
+        </script>
+      {% elif message.tags == 'success' %}
+        <script>
+          Swal.fire('Éxito', '{{ message }}', 'success')
+        </script>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endblock %}

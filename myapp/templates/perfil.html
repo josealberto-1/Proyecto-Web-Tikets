@@ -1,0 +1,68 @@
+{% extends rol %}
+
+{% block title %}
+  Perfil
+{% endblock %}
+
+{% block content %}
+  {{ block.super }}
+  <div class="bg-dark">
+    <div class="container-sm p-5 my-5 bg-info-subtle text-black rounded">
+      <h2>Perfil</h2>
+    </div>
+    <div class="container-sm p-5 my-5 bg-info-subtle text-black rounded">
+      <h2>Datos de usuario</h2>
+      <div class="form-group row">
+        <div class="col">
+          <label for="usuario">Usuario:</label>
+          <input type="text" class="form-control" id="usuario" name="usuario" value="{{ usuario.nombreusuario }}" readonly />
+        </div>
+        <div class="col">
+          <label for="contrasena">Contraseña:</label>
+          <input type="password" class="form-control" id="contrasena" name="contrasena" value="{{ usuario.password }}" readonly />
+        </div>
+      </div>
+      <br />
+      <h2>Datos personales</h2>
+      <div class="form-group row">
+        <div class="col">
+          <label for="nombre">Nombre:</label>
+          <input type="text" class="form-control" id="nombre" name="nombre" value="{{ datos.nombre }}" readonly />
+        </div>
+        <div class="col">
+          <label for="apellido">Apellido:</label>
+          <input type="text" class="form-control" id="apellido" name="apellido" value="{{ datos.apellido }}" readonly />
+        </div>
+      </div>
+      <div class="form-group my-2">
+        <label for="direccion">Dirección:</label>
+        <input type="text" class="form-control" id="direccion" name="direccion" value="{{ datos.direccion }}" readonly />
+      </div>
+
+      <div class="form-group row my-2">
+        <div class="col">
+          <label for="telefono">Teléfono:</label>
+          <input type="text" class="form-control" id="telefono" name="telefono" value="{{ datos.telefono }}" readonly />
+        </div>
+        <div class="col">
+          {% if datos.correoelectronico %}
+            <label for="correoElectronico">Correo electrónico:</label>
+            <input type="text" class="form-control" id="correoElectronico" name="correoElectronico" value="{{ datos.correoelectronico }}" readonly />
+          {% else %}
+            <label for="licencia">Licencia de Conducir:</label>
+            <input type="text" class="form-control" id="licenciaconducir" name="licenciaconducir" value="{{ datos.licenciaconducir }}" readonly />
+          {% endif %}
+        </div>
+      </div>
+      <a href="{% url 'editar_usuario' id=request.user.usuarioid %}" class="btn btn-primary my-3" id="btnEditar">Editar</a>
+    </div>
+  </div>
+
+  {% if messages %}
+    {% for message in messages %}
+      <script>
+        Swal.fire('Compra exitosa', '{{ message }}', 'success')
+      </script>
+    {% endfor %}
+  {% endif %}
+{% endblock %}

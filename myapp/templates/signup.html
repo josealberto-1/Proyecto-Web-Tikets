@@ -1,0 +1,49 @@
+{% extends 'bases/baselogin.html' %}
+{% block title %}Registro{% endblock %}
+{% block content %}
+<div class="container-sm col-md-8 my-5 bg-info-subtle rounded">
+  <h2 class="text-black">Registro</h2>
+  <form class="row g-3" method="POST">
+    {% csrf_token %}
+    <div class="col-md-6">
+      <label for="nombre" class="form-label">Nombre</label>
+      {{ formCliente.nombre }}
+    </div>
+    <div class="col-md-6">
+      <label for="apellido" class="form-label">Apellido</label>
+      {{ formCliente.apellido }}
+    </div>
+    <div class="col-12">
+      <label for="correoElectronico" class="form-label">Email</label>
+      {{ formCliente.correoelectronico }}
+    </div>
+    <div class="col-12">
+      <label for="telefono" class="form-label">Teléfono</label>
+      {{ formCliente.telefono }}
+    </div>
+    <div class="col-12">
+      <label for="direccion" class="form-label">Dirección</label>
+      {{ formCliente.direccion }}
+    </div>
+    <div class="col-md-6">
+      <label for="contraseña" class="form-label">Contraseña</label>
+      {{ formUsuario.password }}
+    </div>
+    <div class="col-md-6">
+      <label for="contraseñaConfirmacion" class="form-label">Confirmar contraseña</label>
+      {{ formUsuario.confirmar_contraseña }}
+    </div>
+    <div class="col-12 my-4">
+      <button type="submit" class="btn btn-primary">Registrarse</button>
+    </div>
+  </form>
+</div>
+
+{% if messages %} 
+{% for message in messages %}
+<script>
+  Swal.fire("Error", "{{ message }}", "error");
+</script>
+{% endfor %}
+{% endif %}
+{% endblock %}

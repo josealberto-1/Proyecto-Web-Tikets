@@ -1,0 +1,80 @@
+body {
+  background-color: gray;
+}
+
+a {
+text-decoration: none;
+text-decoration-line: none;
+  color: black;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+h6 {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+.navbar-brand {
+  position: relative;
+  top: 0px;
+  bottom: 0px;
+  left: 60px;
+  right: 0px;
+}
+
+.navegador {
+  height: 60px;
+}
+
+.navegador a {
+  display: inline;
+  align-content: center;
+  position: relative;
+  top: 15px;
+}
+
+.carousel-img {
+  width: 50%;
+  margin: auto;
+}
+
+.nombres {
+  font-size: 60px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  display: inline-block;
+  text-align: center;
+  position: relative;
+  top: 15px;
+  bottom: 20px;
+  left: 20px;
+  right: 0px;
+}
+
+.nombre {
+  font-size: 60px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  display: inline;
+  position: relative;
+  top: 15px;
+  bottom: 20px;
+  left: 20px;
+  right: 0px;
+}
+
+#boton {
+  font-size: 40px;
+  position: relative;
+  top: 0px;
+  bottom: 60px;
+  left: 820px;
+  right: 0px;
+  display: inline;
+}
+
+#register{
+  color: blue;
+}
+
+
+#footer {
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}

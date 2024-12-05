@@ -1,0 +1,39 @@
+<h1 class="text-black">Registro de Conductores</h1>
+<div class="row">
+  <div class="col-md-6 mt-2">
+    <label for="nombre" class="form-label">Nombre</label>
+    {{ formConductor.nombre }}
+  </div>
+  <div class="col-md-6 mt-2">
+    <label for="apellido" class="form-label">Apellido</label>
+    {{ formConductor.apellido }}
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 mt-2">
+    <label for="telefono" class="form-label">Teléfono</label>
+    {{ formConductor.telefono }}
+  </div>
+  <div class="col-md-6 mt-2">
+    <label for="licencia" class="form-label">Licencia de conducir</label>
+    {{ formConductor.licenciaconducir }}
+  </div>
+  <div class="col-md-12 mt-2">
+    <label for="direccion" class="form-label">Dirección</label>
+    {{ formConductor.direccion }}
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 mt-2">
+    <label for="fechaContratacion" class="form-label">Fecha de contratación</label>
+    {{ formConductor.fechacontratacion }}
+  </div>
+  <div class="col-md-6 mt-2">
+    <label for="contraseña" class="form-label">Contraseña</label>
+    {{ formUsuario.password }}
+  </div>
+  <div class="col-md-12 mt-2">
+    <label for="correo_envio" class="form-label">Correo de Referencia</label>
+    <input id="correo_envio" type="email" class="form-control" name="correo_envio" placeholder="Introduzca el correo de referencia" required/>
+  </div>
+</div>

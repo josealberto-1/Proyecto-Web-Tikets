@@ -1,0 +1,63 @@
+{% extends 'bases/baseadmin.html' %}
+
+{% block title %}
+  Usuarios
+{% endblock %}
+
+{% block content %}
+  {{ block.super }}
+  <div class="container my-5 rounded">
+    <div id="accordion">
+      {% for usuario in usuarios %}
+        <div class="card my-4 text-black">
+          <div class="card-header bg-white text-black d-flex justify-content-between align-items-center">
+            <a class="btn text-black" data-bs-toggle="collapse" href="#collapse{{ forloop.counter }}">Usuario "{{ usuario.nombreusuario }}"</a>
+            <div class="align-items-right">
+              <a class="btn text-bg-red text-white" onclick="confirmacion('{{ usuario.usuarioid }}')" alt="Eliminar" title="Eliminar"><i class="fa-solid fa-trash" style="color: #cf2507;"></i></a>
+            </div>
+          </div>
+          <div id="collapse{{ forloop.counter }}" class="collapse bg-info-subtle text-white" data-bs-parent="#accordion">
+            <div class="card-body text-black">
+              <strong>Identificador</strong>: {{ usuario.usuarioid }}
+            </div>
+            <div class="card-body text-black">
+              <strong>Estado</strong>: {{ usuario.estado }}
+            </div>
+            <div class="card-body text-black">
+              <strong>Rol</strong>: {{ usuario.rolid.nombrerol }}
+            </div>
+            <div class="card-body text-black">
+              <strong>Fecha creación</strong>: {{ usuario.fechacreacion }}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <script>
+      function confirmacion(id) {
+        Swal.fire({
+          title: '¿Estás seguro?',
+          text: `Se eliminará el usuario con ID: ${id}. Una vez eliminado, no podrás recuperar este usuario.`,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Confirmar',
+          cancelButtonText: 'Cancelar'
+        }).then((eliminar) => {
+          if (eliminar.isConfirmed) {
+            window.location.href = "{% url 'eliminar_usuario' id='f8c73852-c3e3-4ae5-bf69-3b48219c3ebd' %}".replace('f8c73852-c3e3-4ae5-bf69-3b48219c3ebd', id)
+          } else {
+            Swal.close()
+          }
+        })
+      }
+    </script>
+  </div>
+
+  {% if messages %}
+    {% for message in messages %}
+      <script>
+        Swal.fire('Éxito', '{{ message }}', 'success')
+      </script>
+    {% endfor %}
+  {% endif %}
+{% endblock %}

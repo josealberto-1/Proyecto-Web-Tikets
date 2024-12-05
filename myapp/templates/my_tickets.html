@@ -1,0 +1,45 @@
+{% extends 'bases/base.html' %}
+
+{% block title %}
+  {{ titulo }}
+{% endblock %}
+
+{% block content %}
+  {{ block.super }}
+  <div class="container bg-transparent text-white my-5 p-4">
+    <h2>Historial de tickets</h2>
+    <p>Listado de tickets adquiridos</p>
+  </div>
+  {% if tickets %}
+  <div class="container my-5 rounded">
+      {% for ticket in tickets %}
+        <div id="accordion">
+          <div class="card my-4 text-black">
+            <div class="card-header bg-white text-black d-flex justify-content-between align-items-center">
+              <a class="btn text-black" data-bs-toggle="collapse" href="#collapse{{ forloop.counter }}">Ticket {{ ticket.ticketid }}</a>
+            </div>
+            <div id="collapse{{ forloop.counter }}" class="collapse show bg-info-subtle text-white" data-bs-parent="#accordion">
+              <div class="card-body text-black">
+                <strong>Ruta</strong>: {{ ticket.viajeid.rutaid }}
+              </div>
+              <div class="card-body text-black">
+                <strong>Fecha reservación</strong>: {{ ticket.fechareservacion }}
+              </div>
+              <div class="card-body text-black">
+                <strong>Estado</strong>: {{ ticket.estadoticket }}
+              </div>
+              <div class="card-body text-black">
+                <strong>Precio</strong>: RD${{ ticket.preciototal }}
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="container-sm p-5 my-5 bg-info-subtle text-black rounded">
+        <h2>No posee ningún ticket comprado hasta el momento.</h2>
+        <p>Para ver algún ticket, favor comprar uno y se podrá reflejar aquí.</p>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

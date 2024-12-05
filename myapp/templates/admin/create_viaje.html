@@ -1,0 +1,68 @@
+{% extends 'bases/baseadmin.html' %}
+
+{% block title %}
+  {% if form.instance %}
+    Editar Viaje
+  {% else %}
+    Nuevo Viaje
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {{ block.super }}
+  <div class="container-sm col-md-8 my-5 bg-info-subtle rounded">
+    <h1 class="text-black">
+      {% if form.instance.id %}
+        Editar Viaje (ID: {{ form.instance.viajeid }})
+      {% else %}
+        Registro de viajes
+      {% endif %}
+    </h1>
+    <form class="row g-3" method="POST">
+      {% csrf_token %}
+      {% if form.instance.id %}
+        <input type="hidden" name="id" value="{{ form.instance.id }}" />
+      {% endif %}
+      <div class="col-md-6">
+        <label for="rutas" class="form-label">Ruta</label>
+        {{ form.rutaid }}
+      </div>
+      <div class="col-md-6">
+        <label for="vehiculos" class="form-label">Vehiculo</label>
+        {{ form.vehiculoid }}
+      </div>
+      <div class="col-md-6">
+        <label for="fechaHoraSalida" class="form-label">Fecha y Hora de salida</label>
+        {{ form.fechahorasalida }}
+      </div>
+      <div class="col-md-6">
+        <label for="fechaHoraLlegada" class="form-label">Fecha y Hora de llegada</label>
+        {{ form.fechahorallegadaestimada }}
+      </div>
+      <div class="col-12 my-4">
+        <button type="submit" class="btn btn-primary me-2">
+          {% if form.instance %}
+            Guardar Cambios
+          {% else %}
+            Registrar
+          {% endif %}
+        </button>
+        <a href="{% url 'ver_viajes' %}" class="btn btn-secondary">Cancelar</a>
+      </div>
+    </form>
+  </div>
+
+  {% if messages %}
+    {% for message in messages %}
+      {% if message.tags == 'error' %}
+        <script>
+          Swal.fire('Error', '{{ message }}', 'error')
+        </script>
+      {% elif message.tags == 'success' %}
+        <script>
+          Swal.fire('Éxito', '{{ message }}', 'success')
+        </script>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endblock %}

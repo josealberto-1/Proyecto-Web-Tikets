@@ -1,0 +1,72 @@
+{% extends 'bases/baseadmin.html' %}
+
+{% block title %}
+  {% if form.instance %}
+    Editar Ruta
+  {% else %}
+    Nueva Ruta
+  {% endif %}
+{% endblock %}
+
+{% block content %}
+  {{ block.super }}
+  <div class="container-sm col-md-8 my-5 bg-info-subtle rounded">
+    <h1 class="text-black">
+      {% if form.instance.id %}
+        Editar Ruta (ID: {{ form.instance.rutaid }})
+      {% else %}
+        Registro de Rutas
+      {% endif %}
+    </h1>
+    <form class="row g-3" method="POST">
+      {% csrf_token %}
+      {% if form.instance.id %}
+        <input type="hidden" name="id" value="{{ form.instance.id }}" />
+      {% endif %}
+      <div class="col-md-6">
+        <label for="origen" class="form-label">Lugar de origen</label>
+        {{ form.origen }}
+      </div>
+      <div class="col-md-6">
+        <label for="destino" class="form-label">Lugar de destino</label>
+        {{ form.destino }}
+      </div>
+      <div class="col-md-4">
+        <label for="distancia" class="form-label">Distancia (kms)</label>
+        {{ form.distancia }}
+      </div>
+      <div class="col-md-4">
+        <label for="duracionEstimada" class="form-label">Duración estimada</label>
+        {{ form.duracionestimada }}
+      </div>
+      <div class="col-md-4">
+        <label for="precioBase" class="form-label">Precio base</label>
+        {{ form.preciobase }}
+      </div>
+      <div class="col-12 my-4">
+        <button type="submit" class="btn btn-primary me-2">
+          {% if form.instance %}
+            Guardar Cambios
+          {% else %}
+            Registrar
+          {% endif %}
+        </button>
+        <a href="{% url 'ver_rutas' %}" class="btn btn-secondary">Cancelar</a>
+      </div>
+    </form>
+  </div>
+
+  {% if messages %}
+    {% for message in messages %}
+      {% if message.tags == 'error' %}
+        <script>
+          Swal.fire('Error', '{{ message }}', 'error')
+        </script>
+      {% elif message.tags == 'success' %}
+        <script>
+          Swal.fire('Éxito', '{{ message }}', 'success')
+        </script>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends 'bases/base.html' %}
+{% block title %}
+  Comprar Tickets
+{% endblock %}
+{% block content %}
+  {{ block.super }}
+  <div class="container bg-transparent text-white my-5 p-4">
+    <h2>Viajes Disponibles</h2>
+  </div>
+  {% if viajes %}
+    <div class="container my-5 rounded">
+      <div id="accordion">
+        {% for viaje in viajes %}
+          <form method="POST" action="{% url 'comprar_ticket' %}?id={{ viaje.viajeid }}">
+            {% csrf_token %}
+            <input type="hidden" aria-hidden="true" name="id" value="{{ viaje.viajeid }}" />
+            <div class="card my-4 text-black">
+              <div class="card-header bg-white text-black d-flex justify-content-between align-items-center">
+                <a class="btn text-black" data-bs-toggle="collapse" href="#collapse{{ forloop.counter }}">Viaje {{ viaje.viajeid }}: {{ viaje.rutaid }}</a>
+                <div class="align-items-right">
+                  <button class="btn text-bg-green" type="submit" alt="Comprar" title="Comprar"><i class="fa-solid fa-money-bill" style="color: #10bc5b;"></i></button>
+                </div>
+              </div>
+              <div id="collapse{{ forloop.counter }}" class="collapse bg-info-subtle text-white" data-bs-parent="#accordion">
+                <div class="card-body text-black">
+                  <strong>Ruta</strong>: {{ viaje.rutaid }}
+                </div>
+                <div class="card-body text-black">
+                  <strong>Fecha y hora de salida</strong>: {{ viaje.fechahorasalida }}
+                </div>
+                <div class="card-body text-black">
+                  <strong>Fecha y hora de llegada</strong>: {{ viaje.fechahorallegadaestimada }}
+                </div>
+                <div class="card-body text-black">
+                  <strong>Vehículo</strong>: {{ viaje.vehiculoid }}
+                </div>
+                <div class="card-body text-black">
+                  <strong>Cupos restantes</strong>: {{ viaje.cuposdisponibles }}
+                </div>
+              </div>
+            </div>
+          </form>
+        {% endfor %}
+      </div>
+    </div>
+  {% else %}
+    <div class="container-sm p-5 my-5 text-white rounded text-center">
+      <h2>No hay ningún viaje disponible por el momento.</h2>
+    </div>
+  {% endif %}
+  {% if messages %}
+    {% for message in messages %}
+      {% if message.tags == 'error' %}
+        <script>
+          Swal.fire('Error', '{{ message }}', 'error')
+        </script>
+      {% elif message.tags == 'success' %}
+        <script>
+          Swal.fire('Compra exitosa', '{{ message }}', 'success')
+        </script>
+      {% endif %}
+    {% endfor %}
+  {% endif %}
+{% endblock %}

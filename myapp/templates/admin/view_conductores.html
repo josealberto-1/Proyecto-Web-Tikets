@@ -1,0 +1,73 @@
+{% extends 'bases/baseadmin.html' %}
+
+{% block title %}
+  Conductores
+{% endblock %}
+
+{% block content %}
+  {{ block.super }}
+  <div class="container my-5 rounded">
+    <div id="accordion">
+      {% for conductor in conductores %}
+        <div class="card my-4 text-black">
+          <div class="card-header bg-white text-black d-flex justify-content-between align-items-center">
+            <a class="btn text-black" data-bs-toggle="collapse" href="#collapse{{ forloop.counter }}">Conductor {{ conductor.conductorid }}</a>
+            <div class="align-items-right">
+              <a class="btn text-bg-red text-white" onclick="confirmación({{ conductor.conductorid }})" alt="Eliminar" title="Eliminar"><i class="fa-solid fa-trash" style="color: #cf2507;"></i></a>
+              <a class="btn text-bg-green text-white" href="{% url 'editar_conductor' id=conductor.conductorid %}" alt=" Editar" title="Editar"><i class="fa-solid fa-pen-to-square" style="color: #296ce0;"></i></a>
+            </div>
+          </div>
+          <div id="collapse{{ forloop.counter }}" class="collapse bg-info-subtle text-white" data-bs-parent="#accordion">
+            <div class="card-body text-black">
+              <strong>Nombre</strong>: {{ conductor.nombre }}
+            </div>
+            <div class="card-body text-black">
+              <strong>Apellido</strong>: {{ conductor.apellido }}
+            </div>
+            <div class="card-body text-black">
+              <strong>Licencia de conducir</strong>: {{ conductor.licenciaconducir }}
+            </div>
+            <div class="card-body text-black">
+              <strong>Teléfono</strong>: {{ conductor.telefono }}
+            </div>
+            <div class="card-body text-black">
+              <strong>Dirección</strong>: {{ conductor.direccion }}
+            </div>
+            <div class="card-body text-black">
+              <strong>Fecha de contratacion</strong>: {{ conductor.fechacontratacion }}
+            </div>
+            <div class="card-body text-black">
+              <strong>Identificador usuario</strong>: {{ conductor.usuarioid.usuarioid }}
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <script>
+      function confirmación(id) {
+        Swal.fire({
+          title: '¿Estás seguro?',
+          text: `Se eliminará el conductor de ID: ${id}. Una vez eliminado, no podrás recuperar este conductor.`,
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: 'Confirmar',
+          cancelButtonText: 'Cancelar'
+        }).then((eliminar) => {
+          if (eliminar.isConfirmed) {
+            window.location.href = "{% url 'eliminar_conductor' id=0 %}".replace('0', id)
+          } else {
+            Swal.close()
+          }
+        })
+      }
+    </script>
+  </div>
+
+  {% if messages %}
+    {% for message in messages %}
+      <script>
+        Swal.fire('Éxito', '{{ message }}', 'success')
+      </script>
+    {% endfor %}
+  {% endif %}
+{% endblock %}

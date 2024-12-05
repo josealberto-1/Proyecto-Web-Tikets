@@ -1,0 +1,50 @@
+{% extends 'bases/base.html' %}
+
+{% block title %}
+  Editar Usuario
+{% endblock %}
+
+{% block content %}
+  {{ block.super }}
+  <div class="container-sm col-md-8 my-5 bg-info-subtle rounded">
+    <h1 class="text-black">Editar Perfil</h1>
+    <form class="row g-3" method="POST">
+      {% csrf_token %}
+      <input type="hidden" name="id" value="{{ form.instance.id }}" />
+      <div class="row">
+        <div class="col-md-6 mt-2">
+          <label for="nombre" class="form-label">Nombre</label>
+          {{ form.nombre }}
+        </div>
+        <div class="col-md-6 mt-2">
+          <label for="apellido" class="form-label">Apellido</label>
+          {{ form.apellido }}
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-6 mt-2">
+          <label for="telefono" class="form-label">Teléfono</label>
+          {{ form.telefono }}
+        </div>
+        <div class="col-md-6 mt-2">
+          {% if form.instance.correoelectronico %}
+            <label for="correoElectronico" class="form-label">Correo electrónico:</label>
+            {{ form.correoelectronico }}
+          {% else %}
+            <label for="correo" class="form-label">Licencia de Conducir:</label>
+            {{ form.licenciaconducir }}
+            <div style="display: none;">{{ form.fechacontratacion }}</div>
+          {% endif %}
+        </div>
+        <div class="col-md-12 mt-2">
+          <label for="direccion" class="form-label">Dirección</label>
+          {{ form.direccion }}
+        </div>
+      </div>
+      <div class="col-12 my-4">
+        <button type="submit" class="btn btn-primary me-2">Guardar Cambios</button>
+        <a href="{% url 'perfil' %}" class="btn btn-secondary">Cancelar</a>
+      </div>
+    </form>
+  </div>
+{% endblock %}
