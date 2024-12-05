@@ -129,13 +129,7 @@ La aplicación estará disponible en `http://localhost:3000/`.
 [![Render](https://img.shields.io/badge/Render-%46E3B7.svg?style=for-the-badge&logo=render&logoColor=white)](https://render.com/)
 [![Stripe](https://img.shields.io/badge/Stripe-5469d4?style=for-the-badge&logo=stripe&logoColor=ffffff)](https://stripe.com/es)
 
-## Contribución
 
-<div align="center">
-
-![Alt](https://repobeats.axiom.co/api/embed/9fb7aa265e4f231795d36f7dc828451fcb4f9738.svg "Repobeats analytics image")
-
-</div>
 
 Si deseas contribuir al proyecto, sigue estos pasos:
 
