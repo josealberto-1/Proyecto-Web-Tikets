@@ -149,7 +149,7 @@ Si deseas contribuir al proyecto, sigue estos pasos:
 
 Si tienes preguntas, comentarios o sugerencias sobre "OnRoad", no dudes en ponerte en contacto:
 
-- **Nombre**: Omar Guillermo Aquino Mena (Back-End) y Angel Enrique de la Cruz Prevost (Front-End).
-- **Correo Electrónico**: [omarguillermo1@gmail.com](mailto:omarguillermo1@gmail.com) y [ad21-1380@unphu.edu.do](mailto:ad21-1380@unphu.edu.do)
+- **Nombre**: Jose Alberto Medina (Back-End) y Daniel de la Rosa (Front-End).
+- **Correo Electrónico**: [jm20-0441@unphu.edu.do](mailto:jm20-0441@unphu.edu.do) y [dd21-1799@unphu.edu.do](mailto:dd21-1799@unphu.edu.do)
 
 También puedes abrir un problema en el repositorio de GitHub si encuentras algún error o deseas solicitar una nueva característica.
